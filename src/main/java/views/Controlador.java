@@ -8,7 +8,7 @@ import java.util.Map;
 import java.util.Optional;
 
 public class Controlador {
-    
+
     public static ArrayList<VehiculoViewModel> getVehiculos(){
         ArrayList<VehiculoViewModel> vehiculos = new ArrayList<>();
         for(Vehiculo vehiculo : Persistencia.getVehiculos()) {
@@ -16,7 +16,7 @@ public class Controlador {
         }
         return vehiculos;
     }
-    
+
     public static double[] calcularConsumos(Map<String, Double> vehiculos){
         double consumoElectricos = 0;
         double consumoCombustible= 0;
