@@ -1,5 +1,7 @@
 data\Persistencia.class
+views\NuevoVehiculo$3.class
 domain\VehiculoCombustible.class
+views\NuevoVehiculo$4.class
 domain\Marca.class
 domain\Responsable.class
 domain\Vehiculo.class
@@ -7,8 +9,13 @@ views\ListarVehiculosView$1.class
 domain\VehiculoElectrico.class
 views\Controlador.class
 app\Program.class
+views\NuevoVehiculo$6.class
 views\VehiculoViewModel.class
 views\ListarVehiculosView.class
+views\NuevoVehiculo.class
+views\NuevoVehiculo$2.class
+views\NuevoVehiculo$5.class
 domain\Sucursal.class
 views\ListarVehiculosView$2.class
+views\NuevoVehiculo$1.class
 domain\VehiculoTipo.class
