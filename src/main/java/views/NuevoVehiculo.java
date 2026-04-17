@@ -59,6 +59,7 @@ public class NuevoVehiculo extends javax.swing.JFrame {
         lex = new javax.swing.JTextField();
         jLabel12 = new javax.swing.JLabel();
         jLabel13 = new javax.swing.JLabel();
+        volverMenu = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -123,6 +124,13 @@ public class NuevoVehiculo extends javax.swing.JFrame {
         jLabel13.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         jLabel13.setText("TIPO COMBUSTIBLE");
 
+        volverMenu.setText("Volver al menú");
+        volverMenu.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                volverMenuActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -185,8 +193,13 @@ public class NuevoVehiculo extends javax.swing.JFrame {
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(variable, javax.swing.GroupLayout.PREFERRED_SIZE, 464, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(38, 38, 38))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(variable, javax.swing.GroupLayout.PREFERRED_SIZE, 464, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(38, 38, 38))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(volverMenu, javax.swing.GroupLayout.PREFERRED_SIZE, 132, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(25, 25, 25))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -229,26 +242,26 @@ public class NuevoVehiculo extends javax.swing.JFrame {
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel4)
                             .addComponent(anio, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(0, 0, Short.MAX_VALUE)))
+                        .addGap(0, 3, Short.MAX_VALUE)))
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel5)
                             .addComponent(capacidadcarga, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 35, Short.MAX_VALUE)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel6)
                             .addComponent(sucursal, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addComponent(jButton1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel7)
                     .addComponent(tipo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(variable, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(66, 66, 66))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(volverMenu)
+                .addGap(30, 30, 30))
         );
 
         pack();
@@ -309,7 +322,10 @@ public class NuevoVehiculo extends javax.swing.JFrame {
                 return;
             }
             VehiculoElectrico v = new VehiculoElectrico(patente1, marcavehiculo, modelo1, Integer.parseInt(anio1), Double.parseDouble(capacidad1), sucursalvehiculo, Double.parseDouble(kwhbase));
-            Persistencia.addVehiculo(v);   
+            Persistencia.addVehiculo(v);  
+            this.setVisible(false);
+            MenuView menu = new MenuView();
+            menu.setVisible(true);
         }
         
         else if(tipo1.toLowerCase().compareTo("combustible") == 0){
@@ -318,7 +334,10 @@ public class NuevoVehiculo extends javax.swing.JFrame {
                 return;
             }
             VehiculoCombustible v = new VehiculoCombustible(patente1, marcavehiculo, modelo1, Integer.parseInt(anio1), Double.parseDouble(capacidad1), sucursalvehiculo, Double.parseDouble(litrosxkm), Double.parseDouble(litrosExtra));
-            Persistencia.addVehiculo(v);    
+            Persistencia.addVehiculo(v);   
+            this.setVisible(false);
+            MenuView menu = new MenuView();
+            menu.setVisible(true);
         }
         else { 
             variable.setText("Tipo de vehiculo ingresado incorrecto (electrico o combustible)");
@@ -331,6 +350,13 @@ public class NuevoVehiculo extends javax.swing.JFrame {
     private void kmlActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_kmlActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_kmlActionPerformed
+
+    private void volverMenuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_volverMenuActionPerformed
+        // TODO add your handling code here:
+        this.setVisible(false);
+        MenuView menu = new MenuView();
+        menu.setVisible(true);
+    }//GEN-LAST:event_volverMenuActionPerformed
 
     /**
      * @param args the command line arguments
@@ -395,5 +421,6 @@ public class NuevoVehiculo extends javax.swing.JFrame {
     private javax.swing.JTextField sucursal;
     private javax.swing.JTextField tipo;
     private javax.swing.JLabel variable;
+    private javax.swing.JButton volverMenu;
     // End of variables declaration//GEN-END:variables
 }
